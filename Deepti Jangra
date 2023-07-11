@@ -1,0 +1,88 @@
+package entities;
+
+import javax.persistence.*;
+
+@Entity
+public class Stock {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
+    private String symbol;
+
+    // Other instance variables and their annotations
+
+    public Stock() {
+        // Default constructor
+    }
+
+    public Stock(String symbol) {
+        this.symbol = symbol;
+        // Initialize other instance variables if any
+    }
+
+    // Getter and setter methods for symbol and other instance variables
+
+    public Long getId() {
+        return id;
+    }
+}
+
+@Entity
+public class Trader {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column
+    private String name;
+
+    // Other instance variables and their annotations
+
+    public Trader() {
+        // Default constructor
+    }
+
+    public Trader(String name) {
+        this.name = name;
+        // Initialize other instance variables if any
+    }
+
+    // Getter and setter methods for name and other instance variables
+
+    public Long getId() {
+        return id;
+    }
+}
+
+@Entity
+public class Trade {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @ManyToOne
+    private Trader trader;
+
+    @ManyToOne
+    private Stock stock;
+
+    // Other instance variables and their annotations
+
+    public Trade() {
+        // Default constructor
+    }
+
+    public Trade(Trader trader, Stock stock) {
+        this.trader = trader;
+        this.stock = stock;
+        // Initialize other instance variables if any
+    }
+
+    // Getter and setter methods for trader, stock, and other instance variables
+
+    public Long getId() {
+        return id;
+    }
+}
